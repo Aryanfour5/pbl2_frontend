@@ -1,0 +1,8 @@
+Name,Age,Gender,Income,JoinDate,Comments
+John,25,Male,50000.0,2021-03-15,Great employee!
+,34,Female,45000.0,,No comments
+Alex,,Male,,2020-07-01,
+Sophia,29,,62000.0,2022-01-20,"New hire, learning"
+Jake,thirty,Male,55000.0,2021-06-10,Hardworking
+Emily,27,Female,,2023-04-01,Excellent skills!!
+,,Other,,,

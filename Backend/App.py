@@ -1,7 +1,7 @@
 import os
 import csv
 import subprocess
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
@@ -12,7 +12,7 @@ UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = {"csv", "txt"}
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
-BASE_COMMAND = "cleanfusion"  # Ensure this is installed and in PATH
+BASE_COMMAND = "cleanfusion"  # Ensure this is in PATH
 
 
 def allowed_file(filename):
@@ -43,29 +43,26 @@ def upload_file():
         operation = request.args.get("operation")
         options = request.args.to_dict()
 
-        filepath = os.path.abspath(filepath)
-        output_file_path = os.path.abspath(
-            os.path.join(app.config["UPLOAD_FOLDER"], f"{filename}_output.csv")
+        name_wo_ext = os.path.splitext(filename)[0]
+        output_file_path = os.path.join(
+            app.config["UPLOAD_FOLDER"], f"{name_wo_ext}_output.csv"
         )
 
         command = []
 
-        # Construct command based on operation
         if operation == "assess":
             command = [BASE_COMMAND, "assess", filepath]
-        elif operation == "clean-default":
+        elif operation in ["clean-default", "clean-advanced"]:
             command = [BASE_COMMAND, "clean", filepath, "--output", output_file_path]
-        elif operation == "clean-advanced":
-            command = [BASE_COMMAND, "clean", filepath, "--output", output_file_path]
-
-            if "numerical" in options:
-                command += ["--numerical", options["numerical"]]
-            if "categorical" in options:
-                command += ["--categorical", options["categorical"]]
-            if "outlier_threshold" in options:
-                command += ["--outlier-threshold", options["outlier_threshold"]]
-            if "text_vectorizer" in options:
-                command += ["--text-vectorizer", options["text_vectorizer"]]
+            if operation == "clean-advanced":
+                if "numerical" in options:
+                    command += ["--numerical", options["numerical"]]
+                if "categorical" in options:
+                    command += ["--categorical", options["categorical"]]
+                if "outlier_threshold" in options:
+                    command += ["--outlier-threshold", options["outlier_threshold"]]
+                if "text_vectorizer" in options:
+                    command += ["--text-vectorizer", options["text_vectorizer"]]
         elif operation == "vectorize":
             method = options.get("text_vectorizer", "tfidf")
             command = [
@@ -77,28 +74,45 @@ def upload_file():
                 "--output",
                 output_file_path,
             ]
+        elif operation == "encode-target":
+            target_column = options.get("target")
+            if not target_column:
+                return (
+                    jsonify({"error": "Missing target column for target encoding"}),
+                    400,
+                )
+            command = [
+                BASE_COMMAND,
+                "encode",
+                filepath,
+                "--method",
+                "target",
+                "--target",
+                target_column,
+                "--output",
+                output_file_path,
+            ]
         else:
             return jsonify({"error": "Invalid operation"}), 400
 
         try:
-            result = subprocess.run(
-                command,
-                capture_output=True,
-                text=True,
-                check=True,
-            )
+            result = subprocess.run(command, capture_output=True, text=True, check=True)
+            print("Command executed:", " ".join(command))
+            print("Command output:", result.stdout)
 
             if operation == "assess":
                 return jsonify({"assessment": result.stdout})
 
-            # For cleaning and vectorization return parsed CSV
+            if not os.path.exists(output_file_path):
+                return jsonify({"error": "Output file was not created"}), 500
+
             with open(output_file_path, newline="", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
                 data = list(reader)
                 return jsonify({"data": data})
 
         except subprocess.CalledProcessError as e:
-            return jsonify({"error": e.stderr or "Processing failed"}), 500
+            return jsonify({"error": e.stderr or "Command failed"}), 500
 
     return jsonify({"error": "Invalid file"}), 400
 
