@@ -1,0 +1,11 @@
+ID,Name,Age,Salary,Department,Experience,Gender
+1,alice,29.0,55000.0,HR,3.0,F
+2,bob,34.0,72000.0,Engineering,5.0,M
+3,charlie,28.0,67500.0,Marketing,2.0,M
+4,david,45.0,91000.0,Engineering,15.0,M
+5,eve,38.0,68000.0,HR,10.0,F
+6,frank,34.0,60000.0,Marketing,4.0,M
+7,grace,32.0,71000.0,Finance,7.0,F
+8,hannah,41.0,67500.0,HR,12.0,F
+9,ian,30.0,50000.0,Engineering,3.0,M
+10,jane,35.0,67000.0,Finance,5.0,F
