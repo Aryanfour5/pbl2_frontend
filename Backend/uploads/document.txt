@@ -1,6 +1,0 @@
-Machine learning is a subset of artificial intelligence.
-Data science combines multiple fields like statistics, computer science, and domain knowledge.
-Deep learning is a class of machine learning that uses algorithms inspired by the structure and function of the brain.
-Natural language processing enables machines to understand and generate human language.
-Data visualization helps in understanding complex data by representing it in graphical formats.
-Artificial intelligence is transforming industries by enabling automation.

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { saveAs } from "file-saver";
-import { Sun, Moon, FileUp, Download, BarChart2, Database, Play } from "lucide-react";
+import { Sun, Moon, FileUp, Download, Database, Play } from "lucide-react";
 import './App.css';
 
 function App() {
@@ -55,7 +55,6 @@ function App() {
         if (options.outlier_threshold) queryParams.append("outlier_threshold", options.outlier_threshold);
         if (options.text_vectorizer) queryParams.append("text_vectorizer", options.text_vectorizer);
       }
-
       if (operation === "encode-target") {
         if (options.target) queryParams.append("target", options.target);
       }
@@ -144,6 +143,12 @@ function App() {
             <div className="flex items-center space-x-4">
               <a href="#" className="nav-link">Dashboard</a>
               <a href="#" className="nav-link">Docs</a>
+              <a href="https://github.com/Aryanfour5/CleanFusion"
+                className="nav-link"
+                target="_blank"
+                rel="noopener noreferrer">
+                GitHub
+              </a>
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="dark-mode-toggle"
@@ -167,12 +172,12 @@ function App() {
             <div className="p-6 md:p-8">
               <h1 className="heading">
                 <Database className="mr-2 h-8 w-8" />
-                CleanFusion UI
+                CleanFusion
               </h1>
 
               <div className="space-y-6">
                 <div className="file-upload-container">
-                  <label className="label">Upload CSV File:</label>
+                  <label className="label">Upload File:</label>
                   <div className="file-upload">
                     <label className="file-upload-label">
                       <input
@@ -336,6 +341,7 @@ function App() {
                     </table>
                   </div>
                 )}
+
               </div>
             </div>
           </div>

@@ -86,12 +86,23 @@ def upload_file():
                 "encode",
                 filepath,
                 "--method",
-                "target",
-                "--target",
-                target_column,
+                "label",
                 "--output",
                 output_file_path,
             ]
+
+        elif operation == "clean-text":
+            command = [
+                BASE_COMMAND,
+                "text",
+                filepath,
+                "--lowercase",
+                "--remove-punctuation",
+                "--remove-stopwords",
+                "--output",
+                output_file_path,
+            ]
+
         else:
             return jsonify({"error": "Invalid operation"}), 400
 
