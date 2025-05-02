@@ -6,7 +6,7 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://pbl2-frontend.vercel.app/"])
 
 UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = {"csv", "txt"}
