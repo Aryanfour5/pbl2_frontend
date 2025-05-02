@@ -5,3 +5,4 @@ numpy==1.25.2
 werkzeug==2.3.7
 python-dotenv==1.0.0
 gunicorn==21.2.0
+cleanfusion
