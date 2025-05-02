@@ -60,7 +60,7 @@ function App() {
       }
 
       const res = await axios.post(
-        `http://localhost:8000/upload?${queryParams.toString()}`,
+        `https://pbl2-frontend.onrender.com/upload?${queryParams.toString()}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
