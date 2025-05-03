@@ -1,0 +1,15 @@
+Name:   Alice!   Email:  ALICE123@Example.Com    Age:  24
+
+name:Bob,, email:Bob_theBuilder@example.com AGE: Thirty
+
+Name:Charlie!! Email: charlie99@sample.com Age:  30   
+
+Name:   alice!   Email:  ALICE123@Example.Com    Age:  24  # duplicate entry
+
+name :    diana ; Email : DIANA@@example.com  Age : 25
+
+Name:   Eric , Email:   eric_007@example,com   Age: 22
+
+NAME:   Frank   Email: frank_theTank@example.co.in     Age:  28   
+
+-- name: george! email: george@email.com age: 31 --

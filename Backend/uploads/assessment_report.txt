@@ -1,0 +1,40 @@
+# Data Quality Assessment Report
+
+## Dataset Overview
+- Number of rows: 7
+- Number of columns: 6
+
+## Missing Values
+- Total missing cells: 12 (28.57%)
+- Columns with missing values: 6
+
+### Top 5 Columns with Missing Values
+- Income: 3.0 values (42.86%)
+- Name: 2.0 values (28.57%)
+- Age: 2.0 values (28.57%)
+- JoinDate: 2.0 values (28.57%)
+- Comments: 2.0 values (28.57%)
+
+## Duplicate Rows
+- Duplicate rows: 0 (0.00%)
+
+## Data Types
+### Column Data Types
+- Name: object
+- Age: object
+- Gender: object
+- Income: float64
+- JoinDate: object
+- Comments: object
+
+## Outliers
+
+## Distributions
+
+### Income
+- Distribution type: likely_normal
+- Mean: 53000.000
+- Median: 52500.000
+- Standard deviation: 7257.180
+- Skewness: 0.345
+- Range: 45000.000 to 62000.000

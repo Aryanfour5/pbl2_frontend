@@ -1,0 +1,5 @@
+This is a sample text that contains common stopwords like the, is, in, and, of. 
+We are analyzing this text to demonstrate how stopwords can be removed from a sentence. 
+The quick brown fox jumped over the lazy dog.
+Natural language processing involves removing stopwords from text data to improve analysis.
+Stopwords are words that do not carry significant meaning and are removed during preprocessing.
